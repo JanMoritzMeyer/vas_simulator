@@ -12,7 +12,7 @@ object Simulator {
     )
 
     datacenters
-      .foreach(_.evaluate(datacenters))
+      .foreach(current => current.evaluate(datacenters.filter(_ != current)))
 
     datacenters
       .foreach(_.checkOffers())

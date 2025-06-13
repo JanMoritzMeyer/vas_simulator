@@ -8,9 +8,8 @@ case class FixedCostDatacenter(name: String, cost: Int, alpha: Double, price: In
 
   override def evaluate(others: List[Datacenter]): Unit = {
     // implement offer strategy
-    val otherDatacenters = others.filter(_ != this)
-    val chosen = Random.between(0, otherDatacenters.size-1)
-    otherDatacenters(chosen).receive(Offer(cost, (newCost) => {
+    val chosen = Random.between(0, others.size-1)
+    others(chosen).receive(Offer(cost, (newCost) => {
       revenueFromDelegatedOffer = Some(
         // win + additional win
         price - cost + Math.ceil((cost - newCost) * alpha).toInt
