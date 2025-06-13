@@ -25,6 +25,7 @@ case class FixedCostDatacenter(name: String, cost: Int, alpha: Double, price: In
   override def checkOffers(): Unit = {
     // sort offers, choose the one with minimal costs
     selectedOffer = receivedOffers
+      .filter(offer => offer.originalCost > cost)
       .sortBy(_.originalCost)
       .reverse
       .headOption
