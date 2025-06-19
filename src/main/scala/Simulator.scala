@@ -20,14 +20,14 @@ object Simulator {
   }
 
   def singleRun(): (Int, Int, Int) = {
-    val price = 30
+    val price = 50
 
     val datacenters = List(
-      FlexibleCostDatacenter("Rechenzentrum 1", 10, 5, 0.5, price),
-      FlexibleCostDatacenter("Rechenzentrum 2", 20, 5, 0.5, price),
-      FlexibleCostDatacenter("Rechenzentrum 3", 30, 5, 0.5, price),
-      FlexibleCostDatacenter("Rechenzentrum 4", 40, 5, 0.5, price),
-      FlexibleCostDatacenter("Rechenzentrum 5", 50, 5, 0.5, price),
+      FlexibleCostDatacenter("Rechenzentrum 1", 10, 10, 0.5, price),
+      FlexibleCostDatacenter("Rechenzentrum 2", 20, 10, 0.5, price),
+      FlexibleCostDatacenter("Rechenzentrum 3", 30, 10, 0.5, price),
+      FlexibleCostDatacenter("Rechenzentrum 4", 40, 10, 0.5, price),
+      FlexibleCostDatacenter("Rechenzentrum 5", 50, 10, 0.5, price),
     )
 
     datacenters

@@ -9,8 +9,8 @@ case class FlexibleCostDatacenter(name: String, mean: Int, variance: Int, alpha:
   def calculateProbabilityForMostExpensive(others: List[FlexibleCostDatacenter]): Double = {
     val probas: List[Double] = others.map(datacenter => {
       val dist = NormalDistribution(datacenter.mean, datacenter.variance)
-      val cheaper = dist.cumulativeProbability(actualCost)
-      1 - cheaper
+      val probabilityCheaper = dist.cumulativeProbability(actualCost)
+      probabilityCheaper
     })
     // Multiply
     probas.foldLeft(1.0)((x, y) => {
