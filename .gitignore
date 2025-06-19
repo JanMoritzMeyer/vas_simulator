@@ -1,4 +1,6 @@
 .idea
+jupyter/.ipynb_checkpoints
+jupyter/vas
 
 target/
 !.mvn/wrapper/maven-wrapper.jar

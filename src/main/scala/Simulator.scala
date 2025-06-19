@@ -1,14 +1,33 @@
 object Simulator {
 
   def main(args: Array[String]): Unit = {
+    val results = (1 to 1_000)
+      .map(x => singleRun())
+
+    val m1 = results.map(_._1)
+    val m11 = m1.sum / m1.size
+
+    val m2 = results.map(_._2)
+    val m22 = m2.sum / m2.size
+
+    val wins = results.map(_._3)
+    val mean = wins.sum / wins.size
+
+
+    results.map(x => s"(${x._1}, ${x._2}),").foreach(println(_))
+    Console.println(s"average win due to strategy is $mean, where average win with is: $m11, without is: $m22")
+
+  }
+
+  def singleRun(): (Int, Int, Int) = {
     val price = 30
 
     val datacenters = List(
-      FixedCostDatacenter("Rechenzentrum 1", 10, 0.5, price),
-      FixedCostDatacenter("Rechenzentrum 2", 20, 0.5, price),
-      FixedCostDatacenter("Rechenzentrum 3", 30, 0.5, price),
-      FixedCostDatacenter("Rechenzentrum 4", 40, 0.5, price),
-      FixedCostDatacenter("Rechenzentrum 5", 50, 0.5, price),
+      FlexibleCostDatacenter("Rechenzentrum 1", 10, 5, 0.5, price),
+      FlexibleCostDatacenter("Rechenzentrum 2", 20, 5, 0.5, price),
+      FlexibleCostDatacenter("Rechenzentrum 3", 30, 5, 0.5, price),
+      FlexibleCostDatacenter("Rechenzentrum 4", 40, 5, 0.5, price),
+      FlexibleCostDatacenter("Rechenzentrum 5", 50, 5, 0.5, price),
     )
 
     datacenters
@@ -20,8 +39,9 @@ object Simulator {
     val overall = datacenters
       .map(_.calculateRevenue())
 
-    println(s"the revenue is $overall with an overall of ${overall.sum}")
+    val altRev = price * datacenters.size - datacenters.map(_.actualCost).sum
 
+    (overall.sum, altRev, (overall.sum - altRev))
   }
 
 }

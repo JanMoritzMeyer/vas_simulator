@@ -6,3 +6,5 @@ lazy val root = (project in file("."))
   .settings(
     name := "vas"
   )
+
+libraryDependencies += "org.apache.commons" % "commons-math3" % "3.6.1"

@@ -7,4 +7,4 @@ trait Datacenter {
   
 }
 
-case class Offer(originalCost: Int, accept: (newCost: Int) => Unit)
+case class Offer(originalCost: Int, accept: (newCost: Int) => Unit, name: String = "")
